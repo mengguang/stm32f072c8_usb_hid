@@ -8,7 +8,9 @@
 #ifndef MISC_UTILS_H_
 #define MISC_UTILS_H_
 
-#include "stdio.h"
+//#include "stdio.h"
+#include "printf.h"
+
 #include "string.h"
 #include "main.h"
 #include "gpio.h"

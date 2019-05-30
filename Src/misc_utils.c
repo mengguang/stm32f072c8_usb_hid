@@ -9,11 +9,16 @@
 #include "misc_utils.h"
 #include "SEGGER_RTT.h"
 
-int _write(int file, char *ptr, int len) {
-	(void) file; /* Not used, avoid warning */
-	SEGGER_RTT_Write(0, ptr, len);
-	return len;
+void _putchar(char c) {
+	//SEGGER_RTT_Write(0, &c, 1);
+	SEGGER_RTT_PutCharSkip(0,c);
 }
+
+//int _write(int file, char *ptr, int len) {
+//	(void) file; /* Not used, avoid warning */
+//	SEGGER_RTT_Write(0, ptr, len);
+//	return len;
+//}
 
 void digitalWrite(gpio_t gpio, uint8_t val) {
 	if(val == HIGH) {
