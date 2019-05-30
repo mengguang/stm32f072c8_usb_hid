@@ -49,7 +49,7 @@ extern USBD_HandleTypeDef hUsbDeviceFS;
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+gpio_t led = { LED_GPIO_Port, LED_Pin };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -63,6 +63,7 @@ void SystemClock_Config(void);
 void usb_hid_process_input_data(uint8_t *data) {
 	memcpy(USB_RX_Buffer,data,sizeof(USB_RX_Buffer));
 	printf("receive: %s\n",(const char*)USB_RX_Buffer);
+	digitalToggle(led);
 }
 
 /* USER CODE END 0 */
@@ -99,6 +100,7 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -117,6 +119,7 @@ int main(void)
 		USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, USB_TX_Buffer,
 				sizeof(USB_TX_Buffer)); // To send usb buffer to PC
 		HAL_Delay(50);
+
   }
   /* USER CODE END 3 */
 }
